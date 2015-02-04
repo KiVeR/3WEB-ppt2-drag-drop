@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Labs ppt 2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            text-align: center;
+        }
+        li{
+            list-style-type:none;
+        }
+        .dropzone-style{
+            border: 3px solid red;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+      <div class="row">
+        <h1>Drag & Drop </h1>
+        <div class="col-md-6 col-md-offset-3" id="dropzone">
+          <p>What fruits do you like?</p>
+          <ul>
+            <li draggable="true" alt="apples"> Apples </li>
+            <li draggable="true" alt="oranges"> Oranges </li>
+            <li draggable="true" alt="pears"> Pears </li>
+          </ul>
+        </div>
+      </div>
+  </div>
+<script>
+    /*
+     * Drag & Drop
+     * */
+    var fruits = $('li[draggable]');
+
+    var fruit = {};
+
+    for (var i = 0; i < fruits.length; i++) {
+      fruit = fruits[i];
+      console.log(fruits[i]);
+      fruit.addEventListener('dragstart', function(event) {
+        console.log('dragstart - fruit');
+      });
+    }
+
+    var zone = document.querySelector('#dropzone');
+
+    zone.addEventListener('dragover', function(event) {
+        event.preventDefault(); // allows us to drop
+        var id = $('div.foo').attr('id');
+        $('#dropzone').css({
+           'border' : '3px solid red',
+           'border-radius' : '10px'
+        });
+    });
+    zone.addEventListener('dragenter', function(event) {
+      console.log('dragenter');
+      //console.log(event);
+    });
+    zone.addEventListener('dragleave', function(event) {
+      console.log('dragleave');
+        $('#dropzone').css({
+           'border' : 'none',
+        });
+      //console.log(event);
+    });
+    zone.addEventListener('drop', function(event) {
+      event.preventDefault(); // Cette méthode est toujours nécessaire pour éviter une éventuelle redirection inattendue
+      $('#dropzone').css({
+         'border' : 'none',
+      });
+      //console.log(event);
+      var fruitname = event.target.getAttribute('alt');
+      alert("Vous avez bien déposé votre élément '"+ fruitname + "' !");
+      console.log('drop');
+    });
+</script>
+</body>
+</html>
+
